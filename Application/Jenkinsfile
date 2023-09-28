@@ -11,5 +11,10 @@ pipeline {
         sh 'cd ./Application && docker compose down && docker container prune && docker compose up -d'
       }
     }
+    stage('SBOM') {
+      steps {
+        sh 'syft app >> sbom.txt'
+      }
+    }
   }
 }

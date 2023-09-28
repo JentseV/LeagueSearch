@@ -49,7 +49,7 @@ export class ProfileComponent {
 
   getMasteriesForSummoner(username: string, count: number) {
     this.showMasteries = !this.showMasteries;
-    this.httpService.getMasteriesForSummoner(username, count).subscribe(result => {
+    this.httpService.getMasteriesForSummoner(username, count, this.summoner.id).subscribe(result => {
       this.masteries = result.map(masteryData => new Mastery(
         masteryData.puuid,
         masteryData.championId,
@@ -79,14 +79,14 @@ export class ProfileComponent {
   }
 
   getMatches(username: string, count: number) {
-
-      this.httpService.getMatchesForSummoner(username, count).subscribe(result => {
+    this.httpService.getMatchIdsForSummoner(this.summoner.puuid, 5).subscribe(matchIDs => {
+      this.httpService.getMatchesForSummoner(matchIDs).subscribe(result => {
         this.matches = result;
         console.log(this.matches[0]);
       });
-      console.log(this.matches[0]);
+    });
   }
-
+  
 
   getPlayerDetailsForMatch(match: Match ) : any{
     const player =  match.info.participants.find(participant => participant.summonerName === this.userName);

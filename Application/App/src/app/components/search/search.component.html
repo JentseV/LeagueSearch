@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Player</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="search-container">
+            <form [formGroup]="searchForm" (ngSubmit)="searchSummoner()">
+                <mat-form-field>
+                    <mat-label> Summoner </mat-label>
+                    <br>
+                    <input matInput class="search-bar" type="text" name="userName" id="userName"
+                        formControlName="userName">
+                </mat-form-field>
+                <br>
+                <button  mat-raised-button  color="success" class="search-button" type="submit" value="submit"> Search!
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

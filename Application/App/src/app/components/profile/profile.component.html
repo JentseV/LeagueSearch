@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+
+<body>
+    <div>
+        <h1> Profile for {{ userName }} </h1>
+    </div>
+    <div class="container" *ngIf="summoner != undefined">
+        <div class="section-x">
+            <p class="userName">{{ summoner.name }}</p>
+            <img class="summonerIcon"
+                src="https://ddragon-webp.lolmath.net/latest/img/profileicon/{{summoner.profileIconId}}.webp">
+            <p class="userLevel">{{ summoner.summonerLevel }}</p>
+        </div>
+        <div>
+            <button mat-raised-button class="slider-list-button"
+                (click)="getMasteriesForSummoner(summoner.name, 10)">Masteries</button>
+            <ol class="slider-list section-y" id="sliderList" *ngIf="showMasteries">
+                <li *ngFor="let i of masteries"> <img class="summonerIcon"
+                        src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{i.championId}}.png">
+                    {{ i.championIdToName() }} {{ i.championPoints }} </li>
+            </ol>
+        </div>
+
+        <div class="section-z">Filler for match history
+            <div>
+                <ul *ngFor="let m of matches">
+                    <li class="li-match" [ngClass]="{'victory': checkOutcome(m) === 'Victory', 'defeat': checkOutcome(m) === 'Defeat', 'undefined' : checkOutcome(m) === 'Undefined'}">
+                        {{ checkOutcome(m) }}
+                        {{getPlayerDetailsForMatch(m).kills}} / {{getPlayerDetailsForMatch(m).deaths}} / {{getPlayerDetailsForMatch(m).assists}}
+                        <img src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{getPlayerDetailsForMatch(m).championId}}.png">
+                        
+                    <div class="li-match-details" *ngFor="let participant of m.info.participants">   
+                       
+                        {{ participant.summonerName }}
+                    </div>
+                      </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    align-items: center;
+    justify-items: center;
+    height: 90vh;
+}
+
+.li-match{
+    list-style-type: none;
+    width:fit-content;
+    background-color: aqua;
+}
+
+
+
+.li-match-details{
+    display: flex;
+
+}
+
+.undefined{
+    width: 100%;
+    background-color: gray;
+}
+
+.victory{
+    width: 100%;
+    background-color: green;
+}
+
+.defeat{
+    width: 100%;
+    background-color: red;
+}   
+
+h1 {
+    margin-left: 40%;
+}
+
+.section-x,
+.section-y,
+.section-z {
+    padding: 20px;
+}
+
+
+.section-z ul{
+    width: 60em;
+    height:5em;
+    display: flex;
+    
+}
+
+.section-x {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userName, .userLevel {
+    margin: 5px;
+  }
+
+.section-y {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.section-z {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+.slider-list-button {
+    margin-bottom: 5%;
+}
+
+.slider-list {
+    display: block;
+
+    overflow: hidden;
+
+    list-style-type: none;
+
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: 200px;
+    transition: max-height 0.3s;
+
+}
+
+.slider-list::-webkit-scrollbar,
+.slider-list::-webkit-scrollbar-thumb {
+    width: 0;
+    background-color: transparent;
+}
+
+.slider-list-visible {
+    max-height: 100px;
+
+}
+
+.slider-list li {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.section-y {
+    grid-column: 2;
+
+    grid-row: 1;
+
+}

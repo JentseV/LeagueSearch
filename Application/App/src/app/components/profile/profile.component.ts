@@ -37,19 +37,21 @@ export class ProfileComponent {
   ngOnInit() {
     this.userName = history.state['profileName'];
     this.getSummonerDataFromApi(this.userName);
-    this.getMatches(this.userName,2);
-    console.log(this.matches);
+  
   }
 
   getSummonerDataFromApi(username: string) {
     this.httpService.getSummonerFromApi(username).subscribe(result => {
       this.summoner = new Summoner(result.id, result.accountId, result.puuid, result.name, result.profileIconId, result.revisionDate, result.summonerLevel);
+
+      this.getMatches(this.summoner.puuid,2);
     });
   }
 
-  getMasteriesForSummoner(username: string, count: number) {
+  getMasteriesForSummoner(count: number) {
     this.showMasteries = !this.showMasteries;
-    this.httpService.getMasteriesForSummoner(username, count, this.summoner.id).subscribe(result => {
+    console.log(this.summoner.puuid);
+    this.httpService.getMasteriesForSummoner(count, this.summoner.puuid).subscribe(result => {
       this.masteries = result.map(masteryData => new Mastery(
         masteryData.puuid,
         masteryData.championId,
@@ -66,23 +68,12 @@ export class ProfileComponent {
 
 
   }
-
-  justSomeTesting() {
-    const testMetaData: MetadataDto = {
-      dataVersion: "2",
-      matchId: '1',
-      participants: ["x", "y"]
-    }
-
-    alert(testMetaData.dataVersion + testMetaData.matchId);
-    const testInfoDto: InfoDto = new InfoDto({});
-  }
-
-  getMatches(username: string, count: number) {
-    this.httpService.getMatchIdsForSummoner(this.summoner.puuid, 5).subscribe(matchIDs => {
+  
+  getMatches(puuid: string, count: number) {
+    this.httpService.getMatchIdsForSummoner(puuid, 5).subscribe(matchIDs => {
       this.httpService.getMatchesForSummoner(matchIDs).subscribe(result => {
         this.matches = result;
-        console.log(this.matches[0]);
+        
       });
     });
   }
@@ -91,7 +82,6 @@ export class ProfileComponent {
   getPlayerDetailsForMatch(match: Match ) : any{
     const player =  match.info.participants.find(participant => participant.summonerName === this.userName);
     return player;
-   
   }
 
   checkOutcome(match: Match): String {

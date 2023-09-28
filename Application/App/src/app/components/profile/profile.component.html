@@ -20,7 +20,7 @@
         </div>
         <div>
             <button mat-raised-button class="slider-list-button"
-                (click)="getMasteriesForSummoner(summoner.name, 10)">Masteries</button>
+                (click)="getMasteriesForSummoner(10)">Masteries</button>
             <ol class="slider-list section-y" id="sliderList" *ngIf="showMasteries">
                 <li *ngFor="let i of masteries"> <img class="summonerIcon"
                         src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{i.championId}}.png">

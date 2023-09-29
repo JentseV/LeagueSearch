@@ -19,7 +19,7 @@ pipeline {
 
     stage ('OWASP Dependency-Check Vulnerabilities') {
         steps {
-          dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'dp-check'
+          dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owaspdpcheck'
       }
     }  
     

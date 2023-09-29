@@ -51,7 +51,7 @@ pipeline {
             }
             steps {
                 sh 'pipx install ggshield && pipx ensurepath'
-                sh 'ggshield secret scan ci'
+                sh '/var/lib/jenkins/.local/bin/ggshield secret scan ci'
             }
         }
     }

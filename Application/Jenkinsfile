@@ -50,6 +50,7 @@ pipeline {
                 GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
             }
             steps {
+                sh 'pipx install ggshield && pipx ensurepath'
                 sh 'ggshield secret scan ci'
             }
         }

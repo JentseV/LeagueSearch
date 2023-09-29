@@ -25,17 +25,23 @@ pipeline {
     }  */
 
     stage('Snyk Scan') {
-      steps {
-        script {
-          def snykCommand = """snyk test --all-projects"""
-          def snykScanResult = sh(script: snykCommand, returnStatus: true)
-          if (snykScanResult != 0) {
-            currentBuild.result = 'FAILURE'
-            error("Snyk scan failed")
-          }
-        }
+  steps {
+    script {
+      def snykCommand = """snyk test --all-projects > snyk-output.txt"""
+      def snykScanResult = sh(script: snykCommand, returnStatus: true)
+      
+      def snykOutputCommand = """snyk test --all-projects | tee -a snyk-output.txt"""
+      
+      def snykOutputResult = sh(script: snykOutputCommand, returnStatus: true)
+      
+      if (snykScanResult != 0) {
+        currentBuild.result = 'FAILURE'
+        error("Snyk scan failed")
       }
     }
+  }
+}
+
     
   }
 }

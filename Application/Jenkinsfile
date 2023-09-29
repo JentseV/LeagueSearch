@@ -11,7 +11,8 @@ pipeline {
         sh 'cd ./Application && docker compose down && docker container prune && docker compose up -d'
       }
     }
-    stage('SBOM') {
+    
+    /*stage('SBOM') {
       steps {
         sh 'syft img-app >> sbom.txt'
       }
@@ -21,7 +22,20 @@ pipeline {
         steps {
           dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owaspdpcheck'
       }
-    }  
+    }  */
+
+    stage('Snyk Scan') {
+      steps {
+        script {
+          def snykCommand = """snyk test --all-projects"""
+          def snykScanResult = sh(script: snykCommand, returnStatus: true)
+          if (snykScanResult != 0) {
+            currentBuild.result = 'FAILURE'
+            error("Snyk scan failed")
+          }
+        }
+      }
+    }
     
   }
 }

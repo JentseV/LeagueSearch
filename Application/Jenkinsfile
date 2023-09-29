@@ -1,48 +1,47 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-        sh 'cd ./Application && docker build ./App -t img-app && docker compose build'
-      }
-    }
-    stage('Deploy') {
-      steps {
-        sh 'cd ./Application && docker compose down && docker container prune && docker compose up -d'
-      }
-    }
-    
-    /*stage('SBOM') {
-      steps {
-        sh 'syft img-app >> sbom.txt'
-      }
-    }
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'cd ./Application && docker build ./App -t img-app && docker compose build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'cd ./Application && docker compose down && docker container prune && docker compose up -d'
+            }
+        }
 
-    stage ('OWASP Dependency-Check Vulnerabilities') {
-        steps {
-          dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owaspdpcheck'
-      }
-    }  */
+        /*stage('SBOM') {
+            steps {
+                sh 'syft img-app >> sbom.txt'
+            }
+        }
 
-    stage('Snyk Scan') {
-  steps {
-    script {
-      def snykCommand = """snyk test --all-projects > snyk-output.txt"""
-      def snykScanResult = sh(script: snykCommand, returnStatus: true)
-      
-      def snykOutputCommand = """snyk test --all-projects | tee -a snyk-output.txt"""
-      
-      def snykOutputResult = sh(script: snykOutputCommand, returnStatus: true)
-      
-      if (snykScanResult != 0) {
-        currentBuild.result = 'FAILURE'
-        error("Snyk scan failed")
-      }
-    }
-  }
-}
+        stage ('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owaspdpcheck'
+            }
+        }  */
 
-stages {
+        stage('Snyk Scan') {
+            steps {
+                script {
+                    def snykCommand = """snyk test --all-projects > snyk-output.txt"""
+                    def snykScanResult = sh(script: snykCommand, returnStatus: true)
+
+                    def snykOutputCommand = """snyk test --all-projects | tee -a snyk-output.txt"""
+
+                    def snykOutputResult = sh(script: snykOutputCommand, returnStatus: true)
+
+                    if (snykScanResult != 0) {
+                        currentBuild.result = 'FAILURE'
+                        error("Snyk scan failed")
+                    }
+                }
+            }
+        }
+        
         stage('GitGuardian Scan') {
             agent {
                 docker { image 'gitguardian/ggshield:latest' }
@@ -55,7 +54,4 @@ stages {
             }
         }
     }
-
-    
-  }
 }

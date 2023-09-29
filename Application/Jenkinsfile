@@ -16,5 +16,12 @@ pipeline {
         sh 'syft app >> sbom.txt'
       }
     }
+
+    stage ('OWASP Dependency-Check Vulnerabilities') {
+        steps {
+          dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'dp-check'
+      }
+    }  
+    
   }
 }

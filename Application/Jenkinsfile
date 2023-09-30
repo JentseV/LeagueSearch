@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment[
+    environment{
         RIOT_API_KEY = credentials('RIOT_API_KEY')
-    ]
+    }
     stages {
         stage('Build') {
             steps {

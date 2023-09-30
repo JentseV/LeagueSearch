@@ -59,6 +59,14 @@ pipeline {
             }
         }
 
-       
+        stage('SonarQube Analysis') {
+        steps {
+            script {
+                def sonarAuthToken = credentials('sonar_key')
+                sh'sonar-scanner -Dsonar.login=${sonarAuthToken}'
+                }
+            }
+         }
+
     }
 }

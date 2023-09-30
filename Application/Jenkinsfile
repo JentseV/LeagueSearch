@@ -53,8 +53,7 @@ pipeline {
             environment {
                 GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
             }
-            steps { 
-                //sh 'pipx install ggshield && pipx ensurepath'     
+            steps {    
                 sh '/var/lib/jenkins/.local/bin/ggshield secret scan ci >> secrets_check.txt'
             }
         }
@@ -63,9 +62,9 @@ pipeline {
         steps {
             script {
                 def scannerhome = tool "sonarscanner";
-                    withSonarQubeEnv('SonarQube Server') {
+
                         sh "${scannerHome}/bin/sonar-scanner"
-                    }
+                    
                 }
             }
          }

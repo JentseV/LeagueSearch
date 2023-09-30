@@ -63,7 +63,7 @@ pipeline {
         steps {
             script {
                 def sonarAuthToken = credentials('sonar_key')
-                sh'sonar-scanner -Dsonar.login=${sonarAuthToken}'
+                sh' sudo sonar-scanner -Dsonar.login=${sonarAuthToken}'
                 }
             }
          }

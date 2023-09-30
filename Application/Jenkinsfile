@@ -62,8 +62,10 @@ pipeline {
         stage('SonarQube Analysis') {
         steps {
             script {
-                def sonarAuthToken = credentials('sonar_key')
-                sh' sudo sonar-scanner -Dsonar.login=${sonarAuthToken}'
+                def scannerhome = tool "sonarscanner";
+                    withSonarQubeEnv('SonarQube Server') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
          }

@@ -8,7 +8,9 @@ RUN npm install -g @angular/cli
 
 RUN npm install
 
-run npm i --save-dev @types/node
+RUN npm i --save-dev @types/node
+
+RUN npm i -S process
 
 COPY . .
 

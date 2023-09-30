@@ -4,10 +4,9 @@ import { Observable,forkJoin } from 'rxjs';
 import { Summoner } from '../models/summoner';
 import { Mastery } from '../models/mastery';
 import { Match } from '../models/match';
-import { environment } from '../environment/environment';
 
 // Access the API key
-const API_KEY_RG = environment.apiKey;
+const API_KEY_RG = process.env["RIOT_API_KEY"];
 
 
 @Injectable({

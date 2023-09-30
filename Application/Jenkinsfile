@@ -1,7 +1,8 @@
 pipeline {
     agent any
 
-    environment{
+    agent any
+    environment {
         RIOT_API_KEY = credentials('RIOT_API_KEY')
     }
     stages {
@@ -15,6 +16,7 @@ pipeline {
                 sh 'cd ./Application && docker compose down && docker container prune && docker compose up -d'
             }
         }
+    
 
         /*stage('SBOM') {
             steps {

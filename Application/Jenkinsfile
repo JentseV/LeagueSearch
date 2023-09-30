@@ -54,8 +54,34 @@ pipeline {
                 GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
             }
             steps {
-                sh 'pipx install ggshield && pipx ensurepath'
+                sh 'pipx install ggshield && pipx ensurepath'   
                 sh '/var/lib/jenkins/.local/bin/ggshield secret scan ci >> secrets_check.txt'
+            }
+        }
+
+        stage('Sign Code') {
+            steps {
+                script {
+                    // Sign your code using GPG
+                    def signCommand = """gpg --detach-sign -u 4A2F95501A522B245E38308F1CFAB8C2106B2A90 -o signed_code.tar.gz.sig code.tar.gz"""
+                    sh signCommand
+                }
+            }
+        }
+        stage('Verify Code') {
+            steps {
+                script {
+                    // Verify the signed code using GPG
+                    def verifyCommand = """gpg --verify signed_code.tar.gz.sig code.tar.gz"""
+                    def verifyExitCode = sh(script: verifyCommand, returnStatus: true)
+                    
+                    if (verifyExitCode != 0) {
+                        currentBuild.result = 'FAILURE'
+                        error("Code verification failed")
+                    } else {
+                        echo "Code verification succeeded"
+                    }
+                }
             }
         }
     }

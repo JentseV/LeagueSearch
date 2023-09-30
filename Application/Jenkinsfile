@@ -53,7 +53,7 @@ pipeline {
             environment {
                 GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
             }
-            steps {
+            steps { 
                 sh 'pipx install ggshield && pipx ensurepath'     
                 sh '/var/lib/jenkins/.local/bin/ggshield secret scan ci >> secrets_check.txt'
             }

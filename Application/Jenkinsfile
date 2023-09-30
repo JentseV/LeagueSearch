@@ -1,7 +1,5 @@
 pipeline {
     agent any
-
-    agent any
     environment {
         RIOT_API_KEY = credentials('RIOT_API_KEY')
     }

@@ -62,6 +62,7 @@ pipeline {
         stage('Sign Code') {
             steps {
                 script {
+                    def gpgKeyFile = credentials('gpg_key')
                     // Sign your code using GPG
                     def signCommand = """gpg --detach-sign -u 4A2F95501A522B245E38308F1CFAB8C2106B2A90 -o signed_code.tar.gz.sig code.tar.gz"""
                     sh signCommand

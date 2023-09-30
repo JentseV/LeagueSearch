@@ -2,5 +2,7 @@ version: '3'
 services:
   angular-app:
     image: img-app
+    environment:
+      - RIOT_API_KEY=${RIOT_API_KEY}
     ports:
       - "4200:4200"

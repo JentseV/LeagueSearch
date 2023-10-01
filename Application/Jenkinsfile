@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         RIOT_API_KEY = credentials('RIOT_API_KEY')
+        sonarAuthToken = credentials('sonar_key');
     }
     stages {
         stage('Build') {
@@ -62,9 +63,8 @@ pipeline {
             steps {
                 script {
                     def scannerHome = tool name: "sonarscanner", type: 'hudson.plugins.sonar.SonarRunnerInstallation';
-                    def sonarAuthToken = credentials('sonar_key');
 
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${sonarAuthToken}" 
+                    sh """${scannerHome}/bin/sonar-scanner -Dsonar.login=${sonarAuthToken}""" 
                 }
             }
         }

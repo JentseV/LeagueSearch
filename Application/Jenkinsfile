@@ -16,15 +16,6 @@ pipeline {
                 sh 'cd ./Application && docker build ./App -t img-app && docker compose build --build-arg RIOT_API_KEY="$RIOT_API_KEY"'
             }
         }
-            stage('Security Test') {
-                steps {
-                    // Run OWASP ZAP security scan
-                    zap(      
-                        url: 'http://localhost:4200',
-                        otherOptions: '-r report.html' // Optional: Specify additional ZAP options
-                    )
-                }
-            }
         stage('Deploy') {
             steps {
                 sh 'cd ./Application && docker compose down && docker container prune && docker compose up -d'

@@ -5,23 +5,26 @@ pipeline {
         sonarAuthToken = credentials('sonar_key');
     }
     stages {
+        stage('Checkout') {
+            steps {
+                git credentialsId: '6068a8c4-1242-4742-bcbf-16f7893508f9', url: 'git@github.com:JentseV/LeagueSearch.git'
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'cd ./Application && docker build ./App -t img-app && docker compose build --build-arg RIOT_API_KEY="$RIOT_API_KEY"'
             }
         }
-
-
-        stage('Security Test') {
-            steps {
-                // Run OWASP ZAP security scan
-                zap(      
-                    url: 'http://localhost:4200',
-                    otherOptions: '-r report.html' // Optional: Specify additional ZAP options
-                )
+            stage('Security Test') {
+                steps {
+                    // Run OWASP ZAP security scan
+                    zap(      
+                        url: 'http://localhost:4200',
+                        otherOptions: '-r report.html' // Optional: Specify additional ZAP options
+                    )
+                }
             }
-        }
-
         stage('Deploy') {
             steps {
                 sh 'cd ./Application && docker compose down && docker container prune && docker compose up -d'

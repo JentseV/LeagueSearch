@@ -59,15 +59,16 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-        steps {
-            script {
-                def scannerhome = tool "sonarscanner";
+            steps {
+                script {
+                    def scannerHome = tool name: "sonarscanner", type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    def sonarAuthToken = credentials('sonar_key') // Use the credential ID for your SonarQube authentication token
 
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    
+                    // Run SonarQube Scanner with authentication token
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${sonarAuthToken}" 
                 }
             }
-         }
+        }
 
     }
 }

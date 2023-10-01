@@ -5,12 +5,6 @@ pipeline {
         sonarAuthToken = credentials('sonar_key');
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git credentialsId: '6068a8c4-1242-4742-bcbf-16f7893508f9', url: 'git@github.com:JentseV/LeagueSearch.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'cd ./Application && docker build ./App -t img-app && docker compose build --build-arg RIOT_API_KEY="$RIOT_API_KEY"'
@@ -23,7 +17,7 @@ pipeline {
         }
     
 
-        /*stage('SBOM') {
+        stage('SBOM') {
             steps {
                 sh 'syft img-app >> sbom.txt'
             }
@@ -33,7 +27,7 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owaspdpcheck'
             }
-        }  */
+        }  
 
         stage('Snyk Scan') {
             steps {

@@ -12,6 +12,8 @@ RUN npm i --save-dev @types/node
 
 RUN npm i -S process
 
+ARG RIOT_API_KEY=""
+
 COPY . .
 
 EXPOSE 4200

@@ -1,18 +1,22 @@
 pipeline {
     agent any
     environment {
-        RIOT_API_KEY = credentials('RIOT_API_KEY')
-        sonarAuthToken = credentials('sonar_key');
+        def RIOT_API_KEY = credentials('RIOT_API_KEY')
+        def sonarAuthToken = credentials('sonar_key');
     }
     stages {
         stage('Build') {
             steps {
-                sh 'cd ./Application && docker build ./App -t img-app && docker compose build --build-arg RIOT_API_KEY="$RIOT_API_KEY"'
+                script {
+                    env.RIOT_API_KEY = RIOT_API_KEY
+
+                    sh 'cd ./Application && docker build ./App -t img-app --build-arg RIOT_API_KEY="$RIOT_API_KEY"'
+                }
             }
         }
         stage('Deploy') {
             steps {
-                sh 'cd ./Application && docker compose down && docker container prune && docker compose up -d'
+                sh 'docker run -dp 4200:4200 img-app'
             }
         }
     

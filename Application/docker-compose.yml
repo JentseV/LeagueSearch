@@ -1,8 +1,10 @@
 version: '3'
 services:
   angular-app:
-    image: img-app
-    environment:
-      - RIOT_API_KEY=${RIOT_API_KEY}
+    build:
+      context: .
+      args:
+        API_URL=${RIOT_API_KEY}
     ports:
       - "4200:4200"
+

@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{B4C0DA2D-33A8-487C-AF5A-0B2D30A30CA9}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Backend PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Backend/Models/Summoner.cs">
+    <Files>
+      <File FileName="Backend/Models/Mastery.cs" />
+      <File FileName="Backend/Models/Matches/MatchDto.cs" />
+      <File FileName="Backend/Models/Matches/PerksDto.cs" />
+      <File FileName="Backend/Controllers/SummonersController.cs" />
+      <File FileName="Backend/Controllers/Match.cs" />
+      <File FileName="Backend/Program.cs" />
+      <File FileName="Backend/Models/SummonerContext.cs" />
+      <File FileName="Backend/Models/Summoner.cs" Line="20" Column="1" />
+      <File FileName="Backend/.env" />
+      <File FileName=".env" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Backend" expanded="True">
+            <Node name="Backend" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="Summoner.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6gO1tdO170SbgSYXfIbnXMU8k12eHs4Mo730qVEAzOXme0ni9VeuiBpvqCm7wIrmIsr/FdUSHXwxzvdn+Mleyw==",
+  "dgSpecHash": "VoBVX6erBtqqgFWUpb8qxaiXxApZ/RsD+LG7DjPAnuNf64rStZyais3eau14AjZnONJHJGRKJsl0HmDMU3ruRQ==",
   "success": true,
-  "projectFilePath": "/home/jentse/Cyber/Backend/Backend/Backend.csproj",
+  "projectFilePath": "/home/jentse/school/CyberSec/LeagueSearch/Backend/Backend/Backend.csproj",
   "expectedPackageFiles": [
     "/root/.nuget/packages/dotenv.net/3.1.2/dotenv.net.3.1.2.nupkg.sha512",
     "/root/.nuget/packages/humanizer/2.14.1/humanizer.2.14.1.nupkg.sha512",
@@ -231,10 +231,7 @@
     "/root/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/root/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
     "/root/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/root/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.netcore.app.ref/6.0.23/microsoft.netcore.app.ref.6.0.23.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.23/microsoft.aspnetcore.app.ref.6.0.23.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.netcore.app.host.linux-arm64/6.0.23/microsoft.netcore.app.host.linux-arm64.6.0.23.nupkg.sha512"
+    "/root/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
     {

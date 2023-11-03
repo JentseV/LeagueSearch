@@ -17,11 +17,11 @@ export class HttpserviceService {
   constructor(private httpClient : HttpClient) { }
 
   getSummonerFromApi(username : string) : Observable<Summoner>{
-    return this.httpClient.get<Summoner>(`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${username}?api_key=${API_KEY_RG}`);
+    return this.httpClient.get<Summoner>(`http://localhost:1201/api/Summoners/${username}`);
   }
 
-  getMasteriesForSummoner(count : number, puuid : string) : Observable<Mastery[]>{
-    return this.httpClient.get<Mastery[]>(`https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}/top?count=${count}&api_key=${API_KEY_RG}`)
+  getMasteriesForSummoner(count : number, username : string) : Observable<Mastery[]>{
+    return this.httpClient.get<Mastery[]>(`http://localhost:1201/api/Summoners/matches?name=$&count=${count}`)
   }
 
   getMatchIdsForSummoner(puuid : string , count : number) : Observable<string[]>{

@@ -26,8 +26,6 @@ namespace Backend.Controllers
 
         public SummonersController(SummonerContext context)
         {
-          
-            Console.WriteLine(API_KEY_RG);
             _context = context;
         }
 
@@ -68,7 +66,6 @@ namespace Backend.Controllers
             
             var summoner = await Summoner.GetSummonerFromRiot(name, API_KEY_RG);
             var puuid = summoner.Puuid;
-            Debug.WriteLine(puuid);
             List<string> matchIDs = await Match.GetMatchIDs(puuid, count,API_KEY_RG);
             List<Match> matches = await Match.GetMatches(matchIDs,API_KEY_RG);
             return matches;
@@ -78,8 +75,8 @@ namespace Backend.Controllers
         public async Task<ActionResult<List<Mastery>>> GetSummonerMasteries( string name,int count)
         {
             var summoner = await Summoner.GetSummonerFromRiot(name, API_KEY_RG);
-            var summonerEncryptedId = summoner.Id;
-            List<Mastery> masteries = await Mastery.GetMasteries(summonerEncryptedId,count , API_KEY_RG);
+            var summonerPuuId = summoner.Puuid;
+            List<Mastery> masteries = await Mastery.GetMasteries(summonerPuuId,count , API_KEY_RG);
             return masteries;
         }
 

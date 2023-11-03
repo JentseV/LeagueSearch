@@ -10,9 +10,9 @@ import { Summoner } from 'src/app/models/summoner';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { SearchService } from 'src/app/services/search.service';
 
-enum GameOutcome{
+enum GameOutcome {
   Victory = 0,
-  Defeat = 1 ,
+  Defeat = 1,
   Undefined = 2
 }
 
@@ -26,8 +26,8 @@ export class ProfileComponent {
   summoner: Summoner;
   showMasteries: boolean = false;
   masteries: Mastery[];
-  matches: Match[];
-  
+  matches: Match[] = [];
+
 
 
   constructor(private searchService: SearchService, private router: ActivatedRoute, private httpService: HttpserviceService) {
@@ -37,14 +37,14 @@ export class ProfileComponent {
   ngOnInit() {
     this.userName = history.state['profileName'];
     this.getSummonerDataFromApi(this.userName);
-  
+    this.matches = this.getMatches(this.userName, 10);
   }
 
   getSummonerDataFromApi(username: string) {
     this.httpService.getSummonerFromApi(username).subscribe(result => {
       this.summoner = new Summoner(result.id, result.accountId, result.puuid, result.name, result.profileIconId, result.revisionDate, result.summonerLevel);
 
-      this.getMatches(this.userName,2);
+      this.getMatches(this.userName, 2);
     });
   }
 
@@ -66,23 +66,24 @@ export class ProfileComponent {
       ))
     })
   }
-  
-  getMatches(username: string, count: number) {
-      this.httpService.getMatchesForSummoner(username,count).subscribe(result => {
-        this.matches = result;
-        console.log(this.matches)
-      });
-  }
-  
 
-  getPlayerDetailsForMatch(match: Match ) : any{
-    const player =  match.info.participants.find(participant => participant.summonerName === this.userName);
+  getMatches(username: string, count: number): Match[] {
+    matches: Match[] = [];
+      = this.httpService.getMatchesForSummoner(username, count).subscribe(result => {
+      this.matches = result;
+      return result;
+    });
+  }
+
+
+  getPlayerDetailsForMatch(match: Match): any {
+    const player = match.info.participants.find(participant => participant.summonerName === this.userName);
     return player;
   }
 
   checkOutcome(match: Match): String {
     const participant = match.info.participants.find(participant => participant.summonerName === this.userName);
-    
+
     if (participant) {
       if (participant.win) {
         return GameOutcome[GameOutcome.Victory];

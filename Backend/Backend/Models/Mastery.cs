@@ -31,14 +31,13 @@ namespace Backend.Models
         }
 
 
-        public static async Task<List<Mastery>> GetMasteries(string summonerId, int count, string API_KEY_RG)
+        public static async Task<List<Mastery>> GetMasteries(string puuId, int count, string API_KEY_RG)
         {
             List<Mastery> matches = new List<Mastery>();
             HttpClient client = new HttpClient();
-            HttpResponseMessage responseMessage = await client.GetAsync($"https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{summonerId}/top?count={count}&api_key={API_KEY_RG}");
+            HttpResponseMessage responseMessage = await client.GetAsync($"https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuId}/top?count={count}&api_key={API_KEY_RG}");
             string responsebody = await responseMessage.Content.ReadAsStringAsync();
             matches = JsonConvert.DeserializeObject<List<Mastery>>(responsebody);
-            Console.WriteLine(matches);
             return matches;
         }
 

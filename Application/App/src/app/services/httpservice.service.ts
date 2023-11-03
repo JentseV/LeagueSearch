@@ -5,9 +5,6 @@ import { Summoner } from '../models/summoner';
 import { Mastery } from '../models/mastery';
 import { Match } from '../models/match';
 
-// Access the API key
-const API_KEY_RG = process.env["RIOT_API_KEY"];
-
 
 @Injectable({
   providedIn: 'root'
@@ -17,22 +14,18 @@ export class HttpserviceService {
   constructor(private httpClient : HttpClient) { }
 
   getSummonerFromApi(username : string) : Observable<Summoner>{
-    return this.httpClient.get<Summoner>(`http://localhost:1201/api/Summoners/${username}`);
+    return this.httpClient.get<Summoner>(`http://localhost:8081/api/Summoners/${username}`);
   }
 
   getMasteriesForSummoner(count : number, username : string) : Observable<Mastery[]>{
-    return this.httpClient.get<Mastery[]>(`http://localhost:1201/api/Summoners/matches?name=$&count=${count}`)
+    return this.httpClient.get<Mastery[]>(`http://localhost:8081/api/Summoners/masteries/${count}?name=${username}`)
   }
 
-  getMatchIdsForSummoner(puuid : string , count : number) : Observable<string[]>{
-    return this.httpClient.get<string[]>(`https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${count}&api_key=${API_KEY_RG}`);
+  getMatchesForSummoner(username : string , count : number) : Observable<Match[]>{
+    return this.httpClient.get<Match[]>(`http://localhost:8081/api/Summoners/matches?name=${username}&count=${count}`);
   }
 
-  getMatchesForSummoner(matchIds: string[]): Observable<Match[]> {
-    const observables = matchIds.map(matchID =>
-      this.httpClient.get<Match>(`https://europe.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=${API_KEY_RG}`)
-    );
-      return forkJoin(observables);
-  }
   
 }
+
+

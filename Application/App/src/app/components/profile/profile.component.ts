@@ -44,14 +44,14 @@ export class ProfileComponent {
     this.httpService.getSummonerFromApi(username).subscribe(result => {
       this.summoner = new Summoner(result.id, result.accountId, result.puuid, result.name, result.profileIconId, result.revisionDate, result.summonerLevel);
 
-      this.getMatches(this.summoner.puuid,2);
+      this.getMatches(this.userName,2);
     });
   }
 
   getMasteriesForSummoner(count: number) {
     this.showMasteries = !this.showMasteries;
-    console.log(this.summoner.puuid);
-    this.httpService.getMasteriesForSummoner(count, this.summoner.puuid).subscribe(result => {
+    console.log(this.userName)
+    this.httpService.getMasteriesForSummoner(count, this.userName).subscribe(result => {
       this.masteries = result.map(masteryData => new Mastery(
         masteryData.puuid,
         masteryData.championId,
@@ -65,17 +65,13 @@ export class ProfileComponent {
         masteryData.summonerId,
       ))
     })
-
-
   }
   
-  getMatches(puuid: string, count: number) {
-    this.httpService.getMatchIdsForSummoner(puuid, 5).subscribe(matchIDs => {
-      this.httpService.getMatchesForSummoner(matchIDs).subscribe(result => {
+  getMatches(username: string, count: number) {
+      this.httpService.getMatchesForSummoner(username,count).subscribe(result => {
         this.matches = result;
-        
+        console.log(this.matches)
       });
-    });
   }
   
 

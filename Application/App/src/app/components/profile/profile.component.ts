@@ -28,8 +28,6 @@ export class ProfileComponent {
   masteries: Mastery[];
   matches: Match[] = [];
 
-
-
   constructor(private searchService: SearchService, private router: ActivatedRoute, private httpService: HttpserviceService) {
 
   }
@@ -37,7 +35,6 @@ export class ProfileComponent {
   ngOnInit() {
     this.userName = history.state['profileName'];
     this.getSummonerDataFromApi(this.userName);
-    this.matches = this.getMatches(this.userName, 10);
   }
 
   getSummonerDataFromApi(username: string) {
@@ -67,23 +64,20 @@ export class ProfileComponent {
     })
   }
 
-  getMatches(username: string, count: number): Match[] {
-    matches: Match[] = [];
-      = this.httpService.getMatchesForSummoner(username, count).subscribe(result => {
+  getMatches(username: string, count: number) {
+      this.httpService.getMatchesForSummoner(username, count).subscribe(result => {
       this.matches = result;
-      return result;
     });
   }
 
 
   getPlayerDetailsForMatch(match: Match): any {
-    const player = match.info.participants.find(participant => participant.summonerName === this.userName);
+    const player = match.info.participants.find(participant => participant.summonerName.toLowerCase() == this.userName.toLocaleLowerCase());
     return player;
   }
 
   checkOutcome(match: Match): String {
-    const participant = match.info.participants.find(participant => participant.summonerName === this.userName);
-
+    const participant = this.getPlayerDetailsForMatch(match);
     if (participant) {
       if (participant.win) {
         return GameOutcome[GameOutcome.Victory];

@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/jentse/school/CyberSec/LeagueSearch/Backend/Backend/Backend.csproj": {}
+    "C:\\Users\\Jents\\Desktop\\LeagueSearch\\LeagueSearch\\Backend\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "/home/jentse/school/CyberSec/LeagueSearch/Backend/Backend/Backend.csproj": {
+    "C:\\Users\\Jents\\Desktop\\LeagueSearch\\LeagueSearch\\Backend\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/jentse/school/CyberSec/LeagueSearch/Backend/Backend/Backend.csproj",
+        "projectUniqueName": "C:\\Users\\Jents\\Desktop\\LeagueSearch\\LeagueSearch\\Backend\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "/home/jentse/school/CyberSec/LeagueSearch/Backend/Backend/Backend.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/home/jentse/school/CyberSec/LeagueSearch/Backend/Backend/obj/",
+        "projectPath": "C:\\Users\\Jents\\Desktop\\LeagueSearch\\LeagueSearch\\Backend\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\Jents\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jents\\Desktop\\LeagueSearch\\LeagueSearch\\Backend\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Jents\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -92,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.416/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

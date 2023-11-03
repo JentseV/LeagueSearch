@@ -49,8 +49,6 @@ namespace Backend.Controllers
               return NotFound();
           }
             var summoner = await Summoner.GetSummonerFromRiot(name, API_KEY_RG);
-
-            Console.WriteLine(API_KEY_RG);
             
             if (summoner == null)
             {

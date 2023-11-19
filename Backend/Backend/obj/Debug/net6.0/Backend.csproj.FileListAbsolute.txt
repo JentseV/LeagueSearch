@@ -1287,3 +1287,6 @@ C:\Users\Jents\Desktop\LeagueSearch\LeagueSearch\Backend\Backend\obj\Debug\net6.
 C:\Users\Jents\Desktop\LeagueSearch\LeagueSearch\Backend\Backend\obj\Debug\net6.0\Backend.pdb
 C:\Users\Jents\Desktop\LeagueSearch\LeagueSearch\Backend\Backend\obj\Debug\net6.0\Backend.genruntimeconfig.cache
 C:\Users\Jents\Desktop\LeagueSearch\LeagueSearch\Backend\Backend\obj\Debug\net6.0\ref\Backend.dll
+C:\Users\Jents\Desktop\LeagueSearch\LeagueSearch\Backend\Backend\bin\Debug\net6.0\JWT.dll
+C:\Users\Jents\Desktop\LeagueSearch\LeagueSearch\Backend\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Jents\Desktop\LeagueSearch\LeagueSearch\Backend\Backend\bin\Debug\net6.0\System.Text.Json.dll

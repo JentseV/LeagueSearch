@@ -10,12 +10,16 @@ import { SearchComponent } from './components/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { LoginComponent } from './components/login/login.component';
+import { CallbackauthComponent } from './components/callbackauth/callbackauth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent,
+    CallbackauthComponent
   ],
   imports: [
     MatButtonModule,

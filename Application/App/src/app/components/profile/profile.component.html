@@ -28,23 +28,32 @@
             </ol>
         </div>
 
-        <div class="section-z">Filler for match history
+        <div class="section-z">Match History
             <div>
                 <ul *ngFor="let m of matches">
-                    <li class="li-match" [ngClass]="{'victory': checkOutcome(m) === 'Victory', 'defeat': checkOutcome(m) === 'Defeat', 'undefined' : checkOutcome(m) === 'Undefined'}">
-                        {{ checkOutcome(m) }}
-                        {{getPlayerDetailsForMatch(m).kills}} / {{getPlayerDetailsForMatch(m).deaths}} / {{getPlayerDetailsForMatch(m).assists}}
-                        <img src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{getPlayerDetailsForMatch(m).championId}}.png">
-                        
-                    <div class="li-match-details" *ngFor="let participant of m.info.participants">   
-                       
-                        {{ participant.summonerName }}
-                    </div>
-                      </li>
+                    <li class="li-match"
+                        [ngClass]="{'victory': checkOutcome(m) === 'Victory', 'defeat': checkOutcome(m) === 'Defeat', 'undefined' : checkOutcome(m) === 'Undefined'}">
+                        <button class="match-button" (click)="showMatchDetails(m)">
+                            <span>
+                                {{ checkOutcome(m) }}
+                                {{getPlayerDetailsForMatch(m).kills}} / {{getPlayerDetailsForMatch(m).deaths}} /
+                                {{getPlayerDetailsForMatch(m).assists}}
+                                <img class="small-icon-champ"
+                                    src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{getPlayerDetailsForMatch(m).championId}}.png">
+                            </span>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+          <span class="close" (click)="closeMatchDetails()">&times;</span>
+          <p> Match details for match :  {{ matchDetails.player }}</p>
+        </div>
+      </div>
 
 </body>
 

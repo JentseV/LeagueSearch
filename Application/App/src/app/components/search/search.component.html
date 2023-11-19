@@ -8,11 +8,12 @@
 </head>
 
 <body>
+    <h1> Welcome to our webpage {{ decodedToken.nickname }}</h1>
     <div class="container">
         <div class="search-container">
             <form [formGroup]="searchForm" (ngSubmit)="searchSummoner()">
                 <mat-form-field>
-                    <mat-label> Summoner </mat-label>
+                    <mat-label> Summoner  {{ currentUser }} </mat-label>
                     <br>
                     <input matInput class="search-bar" type="text" name="userName" id="userName"
                         formControlName="userName">

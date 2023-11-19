@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import { InitialNavigation, NavigationExtras, Router } from '@angular/router';
+import { User } from 'oidc-client-ts';
+import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
+import {jwtDecode} from 'jwt-decode';
 
 
 @Component({
@@ -9,13 +12,16 @@ import { SearchService } from 'src/app/services/search.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
   
 
-  constructor(private searchService : SearchService, private router : Router) {
-    
+  constructor(private authService: AuthService, private searchService : SearchService, private router : Router) {
   }
 
+  currentUser : any;
+  decodedToken = jwtDecode<any>(this.authService.id_token);
+  ngOnInit(): void {
+  }
 
   searchForm =  new FormGroup({
     userName : new FormControl('')
